@@ -7,6 +7,5 @@ import org.springframework.boot.runApplication
 class KotlinSpringBootRestApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinSpringBootRestApiApplication>(*args)
+    runApplication<KotlinSpringBootRestApiApplication>(*args)
 }
-

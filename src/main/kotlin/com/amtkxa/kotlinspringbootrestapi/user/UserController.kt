@@ -27,4 +27,9 @@ class UserController(@NonNull private val userService: UserService) {
     fun create(@RequestBody user: User): ResponseEntity<User> {
         return ResponseEntity.ok(userService.create(user))
     }
+
+    @DeleteMapping(path = ["/api/user/{id}"], produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
+    fun destroy(@PathVariable(value = "id") id: Long): ResponseEntity<Unit> {
+        return ResponseEntity.ok(userService.deleteById(id))
+    }
 }

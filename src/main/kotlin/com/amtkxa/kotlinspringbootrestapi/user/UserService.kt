@@ -22,4 +22,8 @@ class UserService(@NonNull private val userRepository: UserRepository) {
     fun create(user: User): User {
         return userRepository.save(user)
     }
+
+    fun deleteById(id: Long) {
+        userRepository.deleteById(id)
+    }
 }

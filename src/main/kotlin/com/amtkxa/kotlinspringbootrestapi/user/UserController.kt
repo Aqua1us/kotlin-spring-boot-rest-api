@@ -28,6 +28,16 @@ class UserController(@NonNull private val userService: UserService) {
         return ResponseEntity.ok(userService.create(user))
     }
 
+    @PutMapping(path = ["/api/user/{id}"], produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
+    fun update(@PathVariable(value = "id") id: Long, @RequestBody user: User): ResponseEntity<User> {
+        val user = userService.update(id, user)
+        return if (user != null) {
+            ResponseEntity.ok(user)
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
+
     @DeleteMapping(path = ["/api/user/{id}"], produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
     fun destroy(@PathVariable(value = "id") id: Long): ResponseEntity<Unit> {
         return ResponseEntity.ok(userService.deleteById(id))

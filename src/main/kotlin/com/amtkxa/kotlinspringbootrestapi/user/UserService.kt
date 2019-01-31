@@ -23,6 +23,12 @@ class UserService(@NonNull private val userRepository: UserRepository) {
         return userRepository.save(user)
     }
 
+    fun update(id: Long, user: User): User? {
+        return userRepository.findById(id).map { existingUser ->
+            userRepository.save(existingUser.copy(name = user.name))
+        }.orElseGet(null)
+    }
+
     fun deleteById(id: Long) {
         userRepository.deleteById(id)
     }
